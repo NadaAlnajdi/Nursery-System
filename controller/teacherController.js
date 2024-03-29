@@ -12,7 +12,7 @@ exports.getAllTeachers=(request,response,next)=>{
 }
 
 exports.getTeacherByID=(request,response,next)=>{
-    if (request.token._id !== request.params.id && request.token.role !=="supervisor") {
+    if (request.token._id !== request.params.id && request.token.role !=="Admin") {
         throw new Error ("You are not authorized to access this resource" );
     }
     teacherSchema.findById({_id:request.params.id})
@@ -23,6 +23,7 @@ exports.getTeacherByID=(request,response,next)=>{
 }
 
 exports.addTeacher=(request,response,next)=>{
+    request.body.image=request.file.filename
     let object = new teacherSchema(request.body)
     const hashPassword = bcrypt.hashSync(request.body.password,+process.env.saltRound)
     object.password=hashPassword;
@@ -33,7 +34,8 @@ exports.addTeacher=(request,response,next)=>{
     .catch((error) => next(error));
 }
 exports.UpdateTeacherData=(request,response,next)=>{
-    if (request.token._id !== request.body.id && request.token.role !=="supervisor") {
+    request.body.image=request.file.filename
+    if (request.token._id !== request.body.id && request.token.role !=="Admin") {
         throw new Error ("You are not authorized to access this resource" );
     }
     let teacherId=  request.body._id
@@ -49,7 +51,7 @@ exports.UpdateTeacherData=(request,response,next)=>{
     .catch((error) => next(error));
 }
 exports.daleteSpecifiedTeacher=async(request,response,next)=>{
-    if (request.token._id !== request.body._id && request.token.role !=="supervisor" ) {
+    if (request.token._id !== request.body._id && request.token.role !=="Admin" ) {
         throw new Error ("You are not authorized to access this resource" );
     }
     let teacherId=  request.body._id
@@ -70,7 +72,7 @@ exports.daleteSpecifiedTeacher=async(request,response,next)=>{
 }
 
 exports.getAllSupervisors=(request,response,next)=>{
-    teacherSchema.find({ role: 'supervisor' })
+    teacherSchema.find({ role: 'Admin' })
     .then((data) => {
         response.status(200).json({ data });
       })

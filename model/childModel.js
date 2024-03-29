@@ -3,15 +3,15 @@ const mongoose = require('mongoose');
 const addressSchema = new mongoose.Schema({
     city: {
         type: String,
-        required: true
+        // required: true
     },
     street: {
         type: String,
-        required: true
+        // required: true
     },
     building: {
         type: String,
-        required: true
+        // required: true
     }
     
 },{_id:false});
@@ -31,6 +31,10 @@ const childSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: 0 
+    },
+    image: {
+        type: String,
+        default: null
     },
     level: {
         type: String,

@@ -10,7 +10,7 @@ exports.getAllChilds=(request,response,next)=>{
 }
 
 exports.getChildByID=(request,response,next)=>{
-    if (request.token._id !== request.params.id && request.token.role !=="supervisor") {
+    if (request.token._id !== request.params.id && request.token.role !=="Admin") {
         throw new Error ("You are not authorized to access this resource" );
     }
     childSchema.findById({_id:request.params._id})
@@ -21,6 +21,7 @@ exports.getChildByID=(request,response,next)=>{
 }
 
 exports.addChild=(request,response,next)=>{
+    request.body.image=request.file.filename
     let object = new childSchema(request.body)
     object.save()
     .then((data) => {
@@ -30,7 +31,8 @@ exports.addChild=(request,response,next)=>{
 }
 
 exports.UpdateChildData=(request,response,next)=>{
-    if (request.token._id !== request.body.id && request.token.role !=="supervisor") {
+    request.body.image=request.file.filename
+    if (request.token._id !== request.body.id && request.token.role !=="Admin") {
         throw new Error ("You are not authorized to access this resource" );
     }
     let childId=  request.body._id
@@ -47,7 +49,7 @@ exports.UpdateChildData=(request,response,next)=>{
 }
 
 exports.daleteSpecifiedChild=async (request,response,next)=>{
-    if (request.token._id !== request.body.id && request.token.role !=="supervisor") {
+    if (request.token._id !== request.body.id && request.token.role !=="Admin") {
         throw new Error ("You are not authorized to access this resource" );
     }
     let childId=  request.body._id

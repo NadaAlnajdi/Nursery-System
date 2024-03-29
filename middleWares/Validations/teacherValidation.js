@@ -1,13 +1,14 @@
 const { body, param, query } = require("express-validator");
 
 exports.insertValidator = [
+  
   body("_id").isMongoId().withMessage("teacher id should be object"),
   body("fullName")
   .isAlpha().withMessage("teacher username should be string")
   .isLength({min:5}).withMessage(" teacher userName lenght>5"),
   body("email").isEmail().withMessage("Invalid email address"),
   body("password").isStrongPassword().withMessage("Invalid password"),
-  body("image").isString().withMessage("image should be a string"),
+  
 
 ];
 

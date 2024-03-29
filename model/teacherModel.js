@@ -7,7 +7,7 @@ _id: {
 },
 role: {
     type: String,
-    enum: ['teacher', 'supervisor'], 
+    enum: ['teacher', 'Admin'], 
     default: 'teacher' 
 },
 fullName:{
