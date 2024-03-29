@@ -17,5 +17,7 @@ router.route("/teachers")
 
 router.get("/teachers/:id",teacherController.getTeacherByID)
 
+router.patch("/teachers/changePass",teachValidation.UpdateValidator,teacherController.changePassword)
+
 
 module.exports=router;

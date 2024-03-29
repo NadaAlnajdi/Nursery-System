@@ -21,4 +21,7 @@ exports.UpdateValidator = [
     body("image").optional().isString().withMessage("image should be a string"),
   
   ];
+exports.changePassword = [
+    body("newPassword").isLength({ min: 8 }).withMessage("Password should be at least 8 characters long"),
+  ];
 

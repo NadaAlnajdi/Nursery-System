@@ -76,3 +76,25 @@ exports.getAllSupervisors=(request,response,next)=>{
       })
     .catch((error) => next(error));
 }
+
+exports.changePassword=(request,response,next)=>{
+    teacherSchema.findById(request.token._id)
+    .then((data) => {
+        if (!data) {
+            throw new Error("Not found user");
+          }
+          const isCorrectPass = bcrypt.compareSync(request.body.oldPassword,data.password)
+          if(!isCorrectPass){
+            throw new Error("wrong password");
+          }
+          if(request.body.oldPassword == request.body.newPassword ){
+            throw new Error("newPassword can't be same oldPassword");
+          }
+          const hashPassword = bcrypt.hashSync(request.body.newPassword,+process.env.saltRound)
+          data.password= hashPassword
+          data.save()
+        
+         response.status(200).json({ data : "password Changed" });
+      })
+    .catch((error) => next(error));
+}
