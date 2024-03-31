@@ -3,8 +3,11 @@ const morgan = require('morgan');
 const mongoose=require('mongoose');
 const bcrypt = require('bcrypt')
 const cors=require('cors');
-require('dotenv').config()
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerDocument = require('./swagger.json');
 
+require('dotenv').config()
 const teacherRouter=require("./Routes/teacherRoute")
 const childRouter=require("./Routes/childRouter")
 const classRouter=require("./Routes/classRouter")
@@ -32,6 +35,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded( { extended: false }));
 
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(loginRouter,authorizationMW,teacherRouter,childRouter,classRouter);
 
 

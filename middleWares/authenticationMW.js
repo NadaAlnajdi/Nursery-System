@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
   }
 };
 
-module.exports.isSupervisor = (req, res, next) => {
+module.exports.isAdmin = (req, res, next) => {
   if (req.token.role == "Admin") next();
   else next(new Error("not Authorizatied"));
 };

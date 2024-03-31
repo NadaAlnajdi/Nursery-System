@@ -7,15 +7,15 @@ const teachValidation=require("../middleWares/Validations/teacherValidation")
 const validationResult=require("../middleWares/Validations/validationResult")
 const uploadMW = require("../middleWares/uploadMW")
 
-const {isSupervisor , isTeacher} = require("../middleWares/authenticationMW")
+const {isAdmin , isTeacher} = require("../middleWares/authenticationMW")
 
 
 
-router.get("/teachers/supervisors",isSupervisor,teacherController.getAllSupervisors)
+router.get("/teachers/supervisors",isAdmin,teacherController.getAllSupervisors)
 
 router.route("/teachers")
-.get(isSupervisor,teacherController.getAllTeachers)
-.post(uploadMW.single('image'),teachValidation.insertValidator,validationResult,teacherController.addTeacher)
+.get(isAdmin,teacherController.getAllTeachers)
+.post(uploadMW.single('image'),isAdmin,teachValidation.insertValidator,validationResult,teacherController.addTeacher)
 .patch(uploadMW.single('image'),teachValidation.UpdateValidator,validationResult,teacherController.UpdateTeacherData)
 .delete(teacherController.daleteSpecifiedTeacher)
 

@@ -1,0 +1,550 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Nursery system",
+      "description": "Description",
+      "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+    "securityDefinitions": {
+      "adminToken": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "security": [
+      {
+        "adminToken": []
+      }
+    ],
+    "paths": {
+      "/login": {
+        "post": {
+          "description": "Login endpoint",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "example@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "mypassword"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/teachers/supervisors": {
+        "get": {
+          "description": "Get all supervisors",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/teachers": {
+        "get": {
+          "description": "Get all teachers",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "post": {
+          "description": "Create a new teacher",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                "fullName":{
+                    "type": "string",
+                    "example": "teacherName"
+                },
+                "_id":{
+                    "type": "objectId",
+                    "example": "4e9f9b9b9c9eb9d8a2d3c7b9"
+                },
+                  "email": {
+                    "type": "string",
+                    "example": "example@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "My#password123"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "delete": {
+          "description": "Delete teacher by ID",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                    "_id":{
+                        "type": "objectId",
+                        "example": "4e9f9b9b9c9eb9d8a2d3c7b9"
+                    }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+          "description": "Update teacher details",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                    "fullName":{
+                        "type": "string",
+                        "example": "teacherName"
+                    },
+                      "email": {
+                        "type": "string",
+                        "example": "example@example.com"
+                      },
+                      "password": {
+                        "type": "string",
+                        "example": "My#password123"
+                      }
+                    }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/teachers/{id}": {
+        "get": {
+          "description": "Get teacher by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "objectId",
+              "example": "4e9f9b9b9c9eb9d8a2d3c7b9"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/teachers/changePass": {
+        "patch": {
+          "description": "Change teacher password",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "oldPassword": {
+                    "type": "string",
+                    "example": "oldpassword"
+                  },
+                  "newPassword": {
+                    "type": "string",
+                    "example": "newpassword"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/child": {
+        "get": {
+          "description": "Get all children",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "post": {
+            "description": "Create a new child",
+            "parameters": [
+              {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "4"
+                    },
+                    "fullName": {
+                      "type": "string",
+                      "example": "ahmed"
+                    },
+                    "age": {
+                      "type": "string",
+                      "example": "5"
+                    },
+                    "level": {
+                      "type": "string",
+                      "example": "KG1"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "city": {
+                          "type": "string",
+                          "example": "fhcg"
+                        },
+                        "street": {
+                          "type": "string",
+                          "example": "xfggc"
+                        },
+                        "building": {
+                          "type": "string",
+                          "example": "xfggh"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          },
+          
+        "delete": {
+          "description": "Delete child by ID",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "example": "childid123"
+                  },
+                  "_id": {
+                    "type": "string",
+                    "example": "childid123"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+            "description": "Update child details",
+            "parameters": [
+              {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "childid123"
+                    },
+                    "fullName": {
+                      "type": "string",
+                      "example": "ahmed"
+                    },
+                    "age": {
+                      "type": "string",
+                      "example": "5"
+                    },
+                    "level": {
+                      "type": "string",
+                      "example": "KG1"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "city": {
+                          "type": "string",
+                          "example": "fhcg"
+                        },
+                        "street": {
+                          "type": "string",
+                          "example": "xfggc"
+                        },
+                        "building": {
+                          "type": "string",
+                          "example": "xfggh"
+                        }
+                      }
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "child.jpg"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          }
+          
+      },
+      "/child/{_id}": {
+        "get": {
+          "description": "Get child by ID",
+          "parameters": [
+            {
+              "name": "_id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "childid123"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/class": {
+        "get": {
+          "description": "Get all classes",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "post": {
+            "description": "Create a new class",
+            "parameters": [
+              {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "1"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "A"
+                    },
+                    "supervisor": {
+                      "type": "string",
+                      "example": "5e9f9b9b9c9eb8d8a2d3c3b9"
+                    },
+                    "children": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "1"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          },          
+        "delete": {
+          "description": "Delete class by ID",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "example": "classid123"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+            "description": "Update class details",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "description": "ID of the class to update"
+              },
+              {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "A"
+                    },
+                    "supervisor": {
+                      "type": "string",
+                      "example": "5e9f9b9b9c9eb8d8a2d3c3b9"
+                    },
+                    "children": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "1"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          }
+          
+      },
+      "/class/{id}": {
+        "get": {
+          "description": "Get class by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "classid123"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/class/child/{id}": {
+        "get": {
+          "description": "Get class by child ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "childid123"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/class/teacher/{id}": {
+        "get": {
+          "description": "Get class by teacher ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "objectId",
+              "example": "4e9f9b9b9c9eb9d8a2d3c7b9"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      }
+    }
+  }
+  

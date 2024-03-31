@@ -11,7 +11,7 @@ exports.login = (request, response, next) => {
     })
     .then((data) => {
       if (!data) {
-        throw new Error("Not Authenticated");
+        throw new Error("user Not Found  ");
       }
       const isCorrectPass = bcrypt.compareSync(request.body.password,data.password)
       if(!isCorrectPass){
@@ -26,7 +26,7 @@ exports.login = (request, response, next) => {
         process.env.SECRETKEY,
         { expiresIn: "1hr" }
       );
-      response.json({ data: "Authenticated", token });
+      response.json({ data, token });
     })
     .catch((error) => next(error));
 };
