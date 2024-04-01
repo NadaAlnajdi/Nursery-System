@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
       "title": "Nursery system",
-      "description": "Description",
+      "description": "API documentation for managing nursery system.",
       "version": "1.0.0"
     },
     "host": "localhost:8080",
