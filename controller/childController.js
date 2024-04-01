@@ -21,7 +21,7 @@ exports.getChildByID=(request,response,next)=>{
 }
 
 exports.addChild=(request,response,next)=>{
-    request.body.image=request.file.filename
+    request.body.image=request.file?.filename
     let object = new childSchema(request.body)
     object.save()
     .then((data) => {
@@ -31,7 +31,7 @@ exports.addChild=(request,response,next)=>{
 }
 
 exports.UpdateChildData=(request,response,next)=>{
-    request.body.image=request.file.filename
+    request.body.image=request.file?.filename
     if (request.token._id !== request.body.id && request.token.role !=="Admin") {
         throw new Error ("You are not authorized to access this resource" );
     }

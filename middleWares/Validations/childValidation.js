@@ -1,7 +1,6 @@
 const { body, param, query } = require("express-validator");
 
 exports.insertValidator = [
-  body("_id").isInt().withMessage("child id should be integer"),
   body("fullName")
   .isAlpha().withMessage("child username should be string")
   .isLength({min:5}).withMessage(" child userName lenght>5"),

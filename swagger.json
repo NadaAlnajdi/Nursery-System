@@ -227,10 +227,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "_id": {
-                      "type": "string",
-                      "example": "4"
-                    },
                     "fullName": {
                       "type": "string",
                       "example": "ahmed"
@@ -393,10 +389,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "_id": {
-                      "type": "string",
-                      "example": "1"
-                    },
                     "name": {
                       "type": "string",
                       "example": "A"

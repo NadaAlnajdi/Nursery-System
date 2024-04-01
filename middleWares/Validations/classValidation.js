@@ -1,7 +1,6 @@
 const { body, param, query } = require("express-validator");
 
 exports.insertValidator = [
-    body("_id").isInt().withMessage("child id should be integer"),
     body("name")
     .isAlpha().withMessage("Class name should be a string")
     .isLength({ min: 1 }).withMessage("Class name should be at least 2 characters long"),

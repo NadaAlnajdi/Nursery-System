@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const autoIncr=require('mongoose-sequence')(mongoose)
 
 const addressSchema = new mongoose.Schema({
     city: {
@@ -20,7 +21,7 @@ const addressSchema = new mongoose.Schema({
 const childSchema = new mongoose.Schema({
     _id: {
         type: Number,
-        required: true,
+       
         unique: true
     },
     fullName: {
@@ -45,6 +46,10 @@ const childSchema = new mongoose.Schema({
 });
 
 
+childSchema.plugin(autoIncr, {
+    id: 'class_model_id_counter',
+    inc_field: "_id"
+});
 module.exports = mongoose.model('children', childSchema);
 
 
